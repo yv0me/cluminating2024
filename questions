@@ -1,0 +1,40 @@
+Project 1: student information box
+The concept of object-oriented programming is a programming paradigm based on the concept of "objects" that can contain data in the form of fields (attributes or properties) and code in the form of procedures (methods or functions).
+Classes are the blueprints for creating objects.
+When creating an object from a class, the object is an instance of that class. object-oriented programming provides to structure and organize code in a more modular and reusable manner.
+Use the loop to display all student information stored in a list of objects. It is in the StudentManger class and print out all their information.
+The error handling is to solve all of the errors and invalid. For example: missing id missing name, empty fields…
+
+Project 2: Sorting Algorithms
+Bubble sort is a simple comparison-based sorting algorithm. It gets a loop of steps compares adjacent elements, then switches them if they are in the wrong order. Selection Sort finds the minimum or maximum element from the unsorted list and switches it with the first unsorted element, repeatedly these steps and placing it into its correct position.
+Selection sort uses fewer steps than bubble sort, it is more efficient.
+Modify bubble sort to sort a list of objects based on a specific attribute (a list of students by their grades) to compare the attribute values instead of their entire objects.
+
+Project 3: Searching Algorithms
+Binary search is a search algorithm used to find the position of a target value within a sorted array. It repeatedly divides the search interval in half and compares the target value with the middle element of the array. If the target value matches the middle element, the search is done. If the target value is less than the middle element, the search continues in the lower half of the array; if it is greater, would be the opposite.
+If the target value is not present in the list, it will print “value not found”.
+
+Project 4: Recursion
+Recursion is a programming technique where a function calls itself to solve a smaller instance of the same problem. The base case typically represents the simplest instance of the problem that can be solved directly without further recursion.
+The recursive makes coding more clear and easy to understand but it can be difficult to adjust, especially when dealing with deep recursion or complex termination conditions.
+
+Project 5: File Handling
+Steps to open the file in Python: open the file, read the text, write the text, and close the file.
+Open files using the open() function and specify the mode ('r' for reading, 'w' for writing)
+Errors: file not found, incorrect file path, file format errors…
+
+Project 6: Error Handling
+The purpose of handling errors in a Python project is to adjust and give hints to users. Clear error messages help users understand what went wrong and how to proceed. They also help developers identify the root causes of issues in order to fix them efficiently.
+Try-except in python is used to handle exceptions and errors. Here’s an example: 
+try:
+   	 num = int(input("Enter a number: "))
+  	 result = 100 / num
+ print("Result:", result)
+except Error1:
+  print("Error: Division by zero is not allowed.")
+except Exception as e:
+ 	   print("An error occurred:", e)
+types of errors: 
+While reading data from a text file, the file can be unable to read or incorrect file path. (except FileNotFoundError: print("File not found.")) 
+While doing mathematical: an invalid number is entered (print “enter a valid number”)
+While doing field entry work: empty field errors, message not found error (print “message not found”, print “the field shouldn’t be empty”)
