@@ -1,0 +1,43 @@
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        # check if any swich of the numbers happened
+        switch = False
+        for j in range(0, n-i-1):
+            # Compare adjacent elements, change the order if wrong
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                switch = True
+        if not switch:
+            break
+    return arr
+
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        # find the minimum element
+        minimum = i
+        for j in range(i+1, n):
+            # update minimum
+            if arr[j] < arr[minimum]:
+                minimum = j
+        # change the order
+        arr[i], arr[minimum] = arr[minimum], arr[i]
+    return arr
+
+# get numbers from user
+num_elements = int(input("Enter the number of elements in the list: "))
+
+# initialize the list
+numbers = []
+
+# Get each element from the user
+for i in range(num_elements):
+    element = int(input(f"Enter element {i+1}: "))
+    numbers.append(element)
+
+sorted_list_bubble = bubble_sort(numbers[:])
+print("Bubble Sort Result:", sorted_list_bubble)
+
+sorted_list_selection = selection_sort(numbers[:])
+print("Selection Sort Result:", sorted_list_selection)
