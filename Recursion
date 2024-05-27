@@ -1,0 +1,35 @@
+def factorial(n):
+    # factorial of 0 or 1 is 1
+    if n == 0 or n == 1:
+        return 1
+    # other factorial is follow the formular
+    else:
+        return n * factorial(n - 1)
+
+def fibonacci(n):
+    # fibonacci for 0 is 0
+    if n == 0:
+        return [0]
+    # fibonacci for 1 is 0,1
+    elif n == 1:
+        return [0,1]
+    # other case is up to n-1
+    else:
+        series = fibonacci(n - 1)
+        # add on the next number
+        series.append(series[-1] + series[-2])
+        return series
+
+# get number from user and print
+def main():
+    num = int(input("Enter a number to get Factorial: "))
+    result = factorial(num)
+    print(f"The factorial of {num} is {result}.")
+
+    num2 = int(input("Enter the row number to get Fibonacci: "))
+    result1 = fibonacci(num2)
+    print(f"The Fibonacci number at position {num2} is {result1}.")
+
+# run the code
+if __name__ == "__main__":
+    main()
