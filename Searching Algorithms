@@ -1,0 +1,41 @@
+def binary_search(arr, target):
+    # Initialize left and right
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        # Find the middle element
+        mid = left + (right - left) // 2
+        mid = arr[mid]
+        if mid == target:
+            return mid
+        elif mid < target:
+            # move to right
+            left = mid + 1
+        else:
+            # move to left
+            right = mid - 1
+    # Target not found in the list
+    return -1
+
+# Get numbers from user
+number_of_elements = int(input("Enter the number of elements: "))
+target = int(input("Enter the target element to search: "))
+
+# Initialize the list
+numbers = []
+
+# Get each element from the user
+for i in range(number_of_elements):
+    element = int(input(f"Enter element {i+1}: "))
+    numbers.append(element)
+
+# Sort the list to ensure it is sorted before binary search
+numbers.sort()
+
+# Test Binary Search
+result = binary_search(numbers, target)
+
+if result != -1:
+    print(f"Target {target} found at index {result}.")
+else:
+    print(f"Target {target} not found in the list.")
