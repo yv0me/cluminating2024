@@ -1,0 +1,147 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class Student:
+    def __init__(self, name, student_id, gender, grade):
+        self.name = name
+        self.student_id = student_id
+        self.gender = gender
+        self.grade = grade
+
+# Manages a list of Student
+class StudentManager:
+    def __init__(self):
+        self.students = []
+
+    # Adds a Student object
+    def add_student(self, student):
+        self.students.append(student)
+
+    # Searches for a student by their ID
+    def get_student_by_id(self, student_id):
+        for student in self.students:
+            if student.student_id == student_id:
+                return student
+        return None
+
+    # Updates student information
+    def update_student(self, student_id, name=None, gender=None, grade=None):
+        student = self.get_student_by_id(student_id)
+        if student:
+            if name:
+                student.name = name
+            if gender:
+                student.gender = gender
+            if grade:
+                student.grade = grade
+            return True
+        return False
+
+    # display the student info
+    def display_students(self):
+        return self.students
+
+student_manager = StudentManager()
+
+# Clears all entry fields
+def clear():
+    e1.delete(0,tk.END)
+    e2.delete(0,tk.END)
+    e3.delete(0,tk.END)
+    e4.delete(0,tk.END)
+
+# collect data and creats a new object
+def submit():
+    name = e1.get()
+    student_id = e2.get()
+    gender = e3.get()
+    grade = e4.get()
+
+    if name and student_id and gender and grade:
+        student = Student(name, student_id, gender, grade)
+        student_manager.add_student(student)
+        messagebox.showinfo("Submission", "The information has been saved")
+        clear()
+    else:
+        messagebox.showwarning("Input Error", "Please fill out all fields.")
+
+# update info
+def update():
+    student_id = e2.get()
+    name = e1.get()
+    gender = e3.get()
+    grade = e4.get()
+
+    if student_id:
+        success = student_manager.update_student(student_id, name, gender, grade)
+        if success:
+            messagebox.showinfo("Update", "The information has been updated")
+            clear()
+        else:
+            messagebox.showerror("Update Error", "Student not found")
+    else:
+        messagebox.showwarning("Input Error", "Please enter the student ID")
+
+# show info by id
+def show_info():
+    student_id = e2.get()
+    student = student_manager.get_student_by_id(student_id)
+    if student:
+        info = f"Name: {student.name}\nID: {student.student_id}\nGender: {student.gender}\nGrade: {student.grade}"
+        messagebox.showinfo("Student Info", info)
+    else:
+        messagebox.showerror("Error", "Student not found")
+
+# show all info
+def show_all_info():
+    all_info = ""
+    for student in student_manager.display_students():
+        info = f"Name: {student.name}\nID: {student.student_id}\nGender: {student.gender}\nGrade: {student.grade}\n\n"
+        all_info += info
+
+    if all_info:
+        messagebox.showinfo("All Student Info", all_info)
+    else:
+        messagebox.showwarning("Info", "No student information found")
+
+window = tk.Tk()
+window.title("Student Information Box")
+
+for i in range(6):
+    window.grid_rowconfigure(i, weight=1)
+    window.grid_columnconfigure(i, weight=1)
+
+# all the labels
+Label1 = tk.Label(window, text="name:")
+Label1.grid(row=0, column=0, sticky="E")
+e1 = tk.Entry(window)
+e1.grid(row=0, column=1, sticky="EW")
+
+Label2 = tk.Label(window, text="student id:")
+Label2.grid(row=1, column=0, sticky="E")
+e2 = tk.Entry(window)
+e2.grid(row=1, column=1, sticky="EW")
+
+Label3 = tk.Label(window, text="gender:")
+Label3.grid(row=2, column=0, sticky="E")
+e3 = tk.Entry(window)
+e3.grid(row=2, column=1, sticky="EW")
+
+Label4 = tk.Label(window, text="grade:")
+Label4.grid(row=3, column=0, sticky="E")
+e4 = tk.Entry(window)
+e4.grid(row=3, column=1, sticky="EW")
+
+# all the buttons
+Button1 = tk.Button(window, text="Clear", command=clear)
+Button1.grid(row=4, column=0, sticky="EW")
+Button2 = tk.Button(window, text="Submit", command=submit)
+Button2.grid(row=4, column=1, sticky="EW")
+Button3 = tk.Button(window, text="update",command=update)
+Button3.grid(row=5,column=0,sticky="EW")
+Button4 = tk.Button(window, text="show info",command=show_info)
+Button4.grid(row=5,column=1,sticky="EW")
+Button5 = tk.Button(window, text="Show All Info", command=show_all_info)
+Button5.grid(row=6, column=0, columnspan=2, sticky="EW")
+
+window.mainloop()
