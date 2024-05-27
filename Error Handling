@@ -1,0 +1,84 @@
+def bubble_sort():
+    # try...except
+    try:
+        # Get the number of elements from the user
+        num_elements = int(input("Enter the number of elements in the list: "))
+
+        # check if positive
+        if num_elements <= 0:
+            raise ValueError("Number of elements must be positive")
+
+        # Initialize the list and get each element from the user
+        numbers = []
+        for i in range(num_elements):
+            element = int(input(f"Enter element {i + 1}: "))
+            numbers.append(element)
+
+        # check if list empty
+        if not numbers:
+            raise ValueError("List is empty")
+
+        # Sort the list using bubble sort
+        n = len(numbers)
+        for i in range(n):
+            switch = False
+            for j in range(0, n - i - 1):
+                if numbers[j] > numbers[j + 1]:
+                    # switch elements
+                    numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+                    switch = True
+            if not switch:
+                break
+
+        print("Sorted List:", numbers)
+
+    # print error
+    except ValueError as e:
+        print(f"Input Error: {e}")
+
+bubble_sort()
+
+
+def binary_search():
+    try:
+        # Get the number of elements from the user
+        num_elements = int(input("Enter the number of elements in the list: "))
+
+        # check if positive
+        if num_elements <= 0:
+            raise ValueError("Number of elements must be positive")
+
+        # Initialize the list and get each element from the user
+        numbers = []
+        for i in range(num_elements):
+            element = int(input(f"Enter element {i + 1}: "))
+            numbers.append(element)
+
+        # check if list empty
+        if not numbers:
+            raise ValueError("List is empty")
+
+        # Get the target value from the user
+        target = int(input("Enter the target value to search: "))
+
+        # Perform binary search on the sorted list
+        low, high = 0, len(numbers) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if numbers[mid] == target:
+                # print the index
+                print("Target found at index:", mid)
+                return
+            elif numbers[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        # if not found
+        raise ValueError("Target not found in the list")
+
+    # print error
+    except ValueError as e:
+        print(f"Error: {e}")
+
+binary_search()
