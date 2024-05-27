@@ -1,21 +1,24 @@
 def binary_search(arr, target):
-    # Initialize left and right
+    # Initialize left and right pointers
     left, right = 0, len(arr) - 1
 
     while left <= right:
         # Find the middle element
         mid = left + (right - left) // 2
-        mid = arr[mid]
-        if mid == target:
+
+        # Compare the middle element with the target
+        if arr[mid] == target:
             return mid
-        elif mid < target:
-            # move to right
+        elif arr[mid] < target:
+            # Move to the right half
             left = mid + 1
         else:
-            # move to left
+            # Move to the left half
             right = mid - 1
+
     # Target not found in the list
     return -1
+
 
 # Get numbers from user
 number_of_elements = int(input("Enter the number of elements: "))
